@@ -2,6 +2,17 @@ module github.com/GoDriveApp/GoDriveApi/src/infra
 
 go 1.19
 
+replace github.com/GoDriveApp/GoDriveApi/src/core => ../core
+
+require (
+	github.com/GoDriveApp/GoDriveApi/src/core v0.0.0
+)
+
+require (
+	gorm.io/driver/postgres v1.5.0
+	gorm.io/gorm v1.25.0
+)
+
 require (
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20221227161230-091c0ba34f0a // indirect
@@ -10,6 +21,4 @@ require (
 	github.com/jinzhu/now v1.1.5 // indirect
 	golang.org/x/crypto v0.8.0 // indirect
 	golang.org/x/text v0.9.0 // indirect
-	gorm.io/driver/postgres v1.5.0 // indirect
-	gorm.io/gorm v1.25.0 // indirect
 )
