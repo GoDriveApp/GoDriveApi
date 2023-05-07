@@ -2,61 +2,21 @@ package entity
 
 type Account struct {
 	BaseEntity
-	user *User `gorm:"foreignKey:accountId"`
+	User *User `gorm:"foreignKey:Id"`
 
-	userId string
+	UserId string `gorm:"uniqueIndex;type:varchar"`
 
-	username     string `gorm:"unique"`
-	email        string `gorm:"unique"`
-	passwordHash string `gorm:"type:varchar"`
-	isConfirmed  bool
+	Username     string `gorm:"unique;type:varchar"`
+	Email        string `gorm:"unique;type:varchar"`
+	PasswordHash string `gorm:"type:varchar"`
+	IsConfirmed  bool
 }
 
 func NewAccount(id string, username string, email string, passwordHash string, isConfirmed bool) *Account {
 	return &Account{
 		BaseEntity:   NewBaseEntity(id),
-		username:     username,
-		email:        email,
-		passwordHash: passwordHash,
-		isConfirmed:  isConfirmed}
-}
-
-func (acc *Account) User() *User {
-	return acc.user
-}
-
-func (acc *Account) SetUser(user *User) {
-	acc.user = user
-}
-
-func (acc *Account) UserId() string {
-	return acc.userId
-}
-
-func (acc *Account) SetUserId(userId string) {
-	acc.userId = userId
-}
-
-func (acc *Account) Username() string {
-	return acc.username
-}
-
-func (acc *Account) Email() string {
-	return acc.email
-}
-
-func (acc *Account) PasswordHash() string {
-	return acc.passwordHash
-}
-
-func (acc *Account) SetPasswordHash(passwordHash string) {
-	acc.passwordHash = passwordHash
-}
-
-func (acc *Account) IsConfirmed() bool {
-	return acc.isConfirmed
-}
-
-func (acc *Account) SetIsConfirmed(isConfirmed bool) {
-	acc.isConfirmed = isConfirmed
+		Username:     username,
+		Email:        email,
+		PasswordHash: passwordHash,
+		IsConfirmed:  isConfirmed}
 }
