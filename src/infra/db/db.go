@@ -13,13 +13,11 @@ const (
 func Init() (error, *gorm.DB) {
 
 	db, err := gorm.Open(postgres.Open(dbURL), &gorm.Config{})
-
 	if err != nil {
 		return err, nil
 	}
 
 	err = db.AutoMigrate(&entity.Account{}, &entity.User{})
-
 	if err != nil {
 		return err, nil
 	}
