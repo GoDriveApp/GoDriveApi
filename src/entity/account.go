@@ -2,6 +2,10 @@ package entity
 
 type Account struct {
 	BaseEntity
+	user *User `gorm:"foreignKey:accountId"`
+
+	userId string
+
 	username     string `gorm:"unique"`
 	email        string `gorm:"unique"`
 	passwordHash string `gorm:"type:varchar"`
@@ -17,20 +21,28 @@ func NewAccount(id string, username string, email string, passwordHash string, i
 		isConfirmed:  isConfirmed}
 }
 
+func (acc *Account) User() *User {
+	return acc.user
+}
+
+func (acc *Account) SetUser(user *User) {
+	acc.user = user
+}
+
+func (acc *Account) UserId() string {
+	return acc.userId
+}
+
+func (acc *Account) SetUserId(userId string) {
+	acc.userId = userId
+}
+
 func (acc *Account) Username() string {
 	return acc.username
 }
 
-func (acc *Account) SetUsername(username string) {
-	acc.username = username
-}
-
 func (acc *Account) Email() string {
 	return acc.email
-}
-
-func (acc *Account) SetEmail(email string) {
-	acc.email = email
 }
 
 func (acc *Account) PasswordHash() string {
