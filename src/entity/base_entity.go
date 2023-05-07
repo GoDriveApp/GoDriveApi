@@ -16,10 +16,6 @@ func (base *BaseEntity) Id() string {
 	return base.id
 }
 
-func (base *BaseEntity) SetId(id string) {
-	base.id = id
-}
-
 func (base *BaseEntity) InsertedAt() time.Time {
 	return base.insertedAt
 }
