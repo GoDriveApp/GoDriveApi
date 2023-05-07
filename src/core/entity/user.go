@@ -3,6 +3,8 @@ package entity
 type User struct {
 	BaseEntity
 
+	AccountId *string `gorm:"uniqueIndex;type:varchar"`
+
 	FullName  string `gorm:"type:varchar"`
 	AvatarURI string `gorm:"type:varchar;unique"`
 }

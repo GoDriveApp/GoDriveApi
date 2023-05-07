@@ -2,9 +2,7 @@ package entity
 
 type Account struct {
 	BaseEntity
-	User *User `gorm:"foreignKey:Id"`
-
-	UserId string `gorm:"uniqueIndex;type:varchar"`
+	User *User `gorm:"foreignKey:AccountId"`
 
 	Username     string `gorm:"unique;type:varchar"`
 	Email        string `gorm:"unique;type:varchar"`
