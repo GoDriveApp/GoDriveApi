@@ -10,7 +10,6 @@ import (
 
 var (
 	_, database = db.Init()
-	accRepo     = repository.NewAccountRepository(database)
 	mockAccount = entity.NewAccount("id", "vupham", "email@gmail.com", "hahahah", false)
 )
 
