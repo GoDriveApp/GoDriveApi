@@ -196,33 +196,25 @@ func TestAccountRepository_IsEmailExist(t *testing.T) {
 	}
 }
 
-//
-//func TestAccountRepository_IsUsernameExist(t *testing.T) {
-//	type fields struct {
-//		db *gorm.DB
-//	}
-//	type args struct {
-//		username string
-//	}
-//	tests := []struct {
-//		name   string
-//		fields fields
-//		args   args
-//		want   bool
-//	}{
-//		// TODO: Add test cases.
-//	}
-//	for _, tt := range tests {
-//		t.Run(tt.name, func(t *testing.T) {
-//			accRepo := AccountRepository{
-//				db: tt.fields.db,
-//			}
-//			if got := accRepo.IsUsernameExist(tt.args.username); got != tt.want {
-//				t.Errorf("IsUsernameExist() = %v, want %v", got, tt.want)
-//			}
-//		})
-//	}
-//}
+func TestAccountRepository_IsUsernameExist(t *testing.T) {
+	tests := []struct {
+		name     string
+		db       *gorm.DB
+		username string
+		want     bool
+	}{
+		{"should be true", database, mockAccount.Username, true},
+		{"should be false", database, "anonexistaccount", false},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			accRepo := repository.NewAccountRepository(tt.db)
+			if got := accRepo.IsUsernameExist(tt.username); got != tt.want {
+				t.Errorf("IsUsernameExist() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
 
 //func TestAccountRepository_Update(t *testing.T) {
 //	type fields struct {
