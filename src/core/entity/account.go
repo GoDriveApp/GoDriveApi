@@ -10,9 +10,9 @@ type Account struct {
 	IsConfirmed  bool
 }
 
-func NewAccount(id string, username string, email string, passwordHash string, isConfirmed bool) *Account {
+func NewAccount(username string, email string, passwordHash string, isConfirmed bool) *Account {
 	return &Account{
-		BaseEntity:   NewBaseEntity(id),
+		BaseEntity:   NewBaseEntity(),
 		Username:     username,
 		Email:        email,
 		PasswordHash: passwordHash,

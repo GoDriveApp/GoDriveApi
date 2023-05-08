@@ -1,6 +1,9 @@
 package entity
 
-import "time"
+import (
+	"github.com/google/uuid"
+	"time"
+)
 
 type BaseEntity struct {
 	Id         string    `gorm:"primarykey;type:varchar"`
@@ -8,6 +11,6 @@ type BaseEntity struct {
 	UpdatedAt  time.Time `gorm:"autoUpdateTime"`
 }
 
-func NewBaseEntity(id string) BaseEntity {
-	return BaseEntity{Id: id}
+func NewBaseEntity() BaseEntity {
+	return BaseEntity{Id: uuid.New().String()}
 }

@@ -9,6 +9,6 @@ type User struct {
 	AvatarURI string `gorm:"type:varchar;unique"`
 }
 
-func NewUser(id string, fullName string, avatarURI string) *User {
-	return &User{BaseEntity: NewBaseEntity(id), FullName: fullName, AvatarURI: avatarURI}
+func NewUser(fullName string, avatarURI string) *User {
+	return &User{BaseEntity: NewBaseEntity(), FullName: fullName, AvatarURI: avatarURI}
 }
