@@ -10,7 +10,7 @@ import (
 
 var (
 	_, database = db.Init()
-	mockAccount = entity.NewAccount("id", "vupham", "email@gmail.com", "hahahah", false)
+	mockAccount = entity.NewAccount("vupham", "email@gmail.com", "hahahah", false)
 )
 
 //func TestAccountRepository_Delete(t *testing.T) {
@@ -93,9 +93,6 @@ var (
 //}
 
 func TestAccountRepository_Insert(t *testing.T) {
-	type args struct {
-		account *entity.Account
-	}
 	tests := []struct {
 		name    string
 		db      *gorm.DB
