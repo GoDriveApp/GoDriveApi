@@ -13,65 +13,6 @@ var (
 	mockAccount = entity.NewAccount("id", "vupham", "email@gmail.com", "hahahah", false)
 )
 
-//
-//func TestAccountRepository_Insert(t *testing.T) {
-//	// set up
-//	var wantErr error = nil
-//
-//	// execute
-//	err := accRepo.Insert(mockAccount)
-//
-//	// log
-//	if err != wantErr {
-//		t.Errorf("Insert() got 'err' = %v, want 'err' = %v\n", err, wantErr)
-//	} else {
-//		t.Logf("Insert() got 'err' = %v, want 'err' = %v\n", err, wantErr)
-//	}
-//}
-//
-//func TestAccountRepository_GetById(t *testing.T) {
-//	// set up
-//	var want = *mockAccount
-//
-//	// execute
-//	account := accRepo.GetById(want.Id)
-//
-//	// log
-//	if want != *account {
-//		t.Errorf("Insert() got 'account' = %v, want 'account' = %v\n", account, want)
-//	} else {
-//		t.Logf("Insert() got 'account' = %v, want 'account' = %v\n", account, want)
-//	}
-//}
-//
-//// TestAccountRepository_IsEmailExist
-//
-//type IsEmailExistTestResult struct {
-//	want bool
-//	data any
-//}
-//
-//func IsEmailExist_Case1() {
-//
-//}
-//
-//func TestAccountRepository_IsEmailExist(t *testing.T) {
-//	// test cases
-//
-//	// set up
-//	var wantResult = true
-//
-//	// execute
-//	result := accRepo.IsEmailExist(mockAccount.Email)
-//
-//	// log
-//	if result != wantResult {
-//		t.Errorf("IsEmailExist() got 'result' = %v, want 'result' = %v\n", result, wantResult)
-//	} else {
-//		t.Logf("IsEmailExist() got 'result' = %v, want 'result' = %v\n", result, wantResult)
-//	}
-//}
-
 //func TestAccountRepository_Delete(t *testing.T) {
 //	type fields struct {
 //		db *gorm.DB
@@ -124,31 +65,6 @@ var (
 //	}
 //}
 
-//func TestAccountRepository_Insert(t *testing.T) {
-//	type fields struct {
-//		db *gorm.DB
-//	}
-//	type args struct {
-//		account *entity.Account
-//	}
-//	tests := []struct {
-//		name    string
-//		fields  fields
-//		args    args
-//		wantErr bool
-//	}{
-//		// TODO: Add test cases.
-//	}
-//	for _, tt := range tests {
-//		t.Run(tt.name, func(t *testing.T) {
-//			accRepo := repository.NewAccountRepository(tt.fields.db)
-//			if err := accRepo.Insert(tt.args.account); (err != nil) != tt.wantErr {
-//				t.Errorf("Insert() error = %v, wantErr %v", err, tt.wantErr)
-//			}
-//		})
-//	}
-//}
-
 //func TestAccountRepository_GetById(t *testing.T) {
 //	type fields struct {
 //		db *gorm.DB
@@ -175,6 +91,29 @@ var (
 //		})
 //	}
 //}
+
+func TestAccountRepository_Insert(t *testing.T) {
+	type args struct {
+		account *entity.Account
+	}
+	tests := []struct {
+		name    string
+		db      *gorm.DB
+		account *entity.Account
+		wantErr bool
+	}{
+		{"should insert successfully", database, mockAccount, false},
+		{"should insert unsuccessfully", database, nil, true},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			accRepo := repository.NewAccountRepository(tt.db)
+			if err := accRepo.Insert(tt.account); (err != nil) != tt.wantErr {
+				t.Errorf("Insert() error = %v, wantErr %v", err, tt.wantErr)
+			}
+		})
+	}
+}
 
 func TestAccountRepository_IsEmailExist(t *testing.T) {
 	tests := []struct {
